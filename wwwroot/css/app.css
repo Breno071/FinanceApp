@@ -22,8 +22,9 @@ a, .btn-link {
     border-color: #1861ac;
 }
 
-.text-secondary{
-    color:green;
+
+.bg-secondary {
+    background-color: #b4b4b4 !important;
 }
 
 section {
