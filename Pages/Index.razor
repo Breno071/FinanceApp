@@ -1,0 +1,104 @@
+﻿@page "/"
+
+<section class="border-5 bg-info p-2 text-white w-100">
+    <h2>R$ 1,800</h2>
+    <div class="text-center d-flex justify-content-center">
+        <div>
+            <progress id="file" max="100" value="70">70%</progress>
+        </div>
+    </div>
+    <p>R$ 738 de R$ 2,550 gasto.</p>
+</section>
+
+<section class="bg-light text-black p-2 mt-2 w-100">
+    <div class="accordion" id="acordionEntradas">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEntradas" aria-expanded="true" aria-controls="collapseEntradas">
+                    <div class="text-info w-100 d-flex justify-content-between">
+                        <span class="fw-bold">Entradas: </span>
+                        <span class="fw-bold">R$ 6,000</span>
+                    </div>
+                </button>
+            </h2>
+            <div id="collapseEntradas" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#acordionEntradas">
+                <div class="accordion-body">
+                    @for (int i = 1; i < 4; i++)
+                    {
+                        <div class="w-100 d-flex justify-content-between">
+                            <span style="color:green;">@RandomDay().ToShortDateString()</span>
+                            <span style="color:green;">R$ @i,000</span>
+                        </div>
+                    }        
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="accordion" id="acordionDespesas">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDespesas" aria-expanded="true" aria-controls="collapseDespesas">
+                    <div class="w-100 text-danger d-flex justify-content-between">
+                        <span class="fw-bold">Despesas: </span>
+                        <span class="fw-bold">- R$ 2,000</span>
+                    </div>
+                </button>
+            </h2>
+            <div id="collapseDespesas" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#acordionDespesas">
+                <div class="accordion-body">
+                    @for (int i = 1; i < 3; i++)
+                    {
+                        <div class="w-100 d-flex justify-content-between">
+                            <span style="color:red;">@RandomDay().ToShortDateString()</span>
+                            <span style="color:red;">R$ 1,000</span>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<Separator />
+
+<section class="bg-light text-black p-3 mt-2 w-100">
+    <div class="w-100 d-flex justify-content-between">
+        <h5 class="display-6">Cartão de Crédito</h5>
+        <a href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+                <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
+            </svg>
+        </a>
+    </div>
+    <span class="text-secondary">
+        Fatura atual
+    </span>
+    <p class="fw-bold">R$ 1,500</p>
+</section>
+
+<Separator/>
+
+<section class="bg-light text-black p-3 mt-2 w-100">
+    <div class="w-100 d-flex justify-content-between">
+        <h5 class="display-6">Empréstimo</h5>
+        <a href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+                <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
+            </svg>
+        </a>
+    </div>
+    <span class="text-secondary">
+        Crie um aviso para saber quando um empréstimo ficar disponível para você
+    </span>
+</section>
+
+<Separator/>
+
+@code{
+    private Random gen = new Random();
+    DateTime RandomDay()
+    {
+        DateTime start = new DateTime(1995, 1, 1);
+        int range = (DateTime.Today - start).Days;
+        return start.AddDays(gen.Next(range));
+    }
+}
